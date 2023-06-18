@@ -1,0 +1,74 @@
+.btn_start,.quiz_box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* transfrom ile yatar ve dikeyde kaydırma sağladık */
+    transform: translate(-50%, -50%);
+}
+
+/* butondan sorulara geçişi yapmak için sınıfın ismini js yolula değiştirdik ve opacity pointer-events
+   kodlarını güncelledik
+*/
+.quiz_box.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate((-50%,-50%) scale(1));
+}
+
+.quiz_box{
+    transform: translate((-50%,-50%) scale(0.7));
+    transition: all 0.3s ease;
+    width: 550px;
+    opacity: 0;
+    /* quiz_box btn_start butonun üstüne geldiği için tıklama olayını engelledik */
+    pointer-events: none;
+
+}
+
+.quiz_box header .title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.quiz_box .question_text {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.quiz_box .option_list {
+    padding: 18px 0;
+
+}
+
+.quiz_box .option_list .option{
+    border: 1px solid #151d3b;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.option_list .option:hover {
+    color: #fff;
+    background: #ffd33d;
+
+}
+
+.option_list .option.correct:hover {
+    color: #fff;
+    background: #00DFA2;
+
+}
+
+.option_list .option.incorrect:hover {
+    color: #fff;
+    background: #B31312;
+
+}
+
