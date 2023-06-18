@@ -69,6 +69,19 @@ function soruGoster(soru) {
     const option = option_list.querySelectorAll(".option")
     
     for(let opt of option){
-        console.log(opt)
+        opt.setAttribute("onclick", "optionSelected(this)")
+    }
+}
+
+function optionSelected(option) {
+    let cevap = option.querySelector("span b").textContent;
+    let soru = quiz.soruGetir();
+
+    if (soru.cevabiKontrolEt(cevap)) {
+        option.classList.add("correct")
+        
+    }
+    else{
+        option.classList.add("incorrect")
     }
 }
