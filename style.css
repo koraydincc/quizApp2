@@ -1,28 +1,26 @@
-.btn_start,.quiz_box{
+.btn_start,
+.quiz_box {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* transfrom ile yatar ve dikeyde kaydırma sağladık */
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
 }
 
-/* butondan sorulara geçişi yapmak için sınıfın ismini js yolula değiştirdik ve opacity pointer-events
-   kodlarını güncelledik
-*/
 .quiz_box.active {
     opacity: 1;
     pointer-events: auto;
-    transform: translate((-50%,-50%) scale(1));
+
+    transform: translate(-50%, -50%) scale(1);
 }
 
-.quiz_box{
-    transform: translate((-50%,-50%) scale(0.7));
-    transition: all 0.3s ease;
+.quiz_box {
     width: 550px;
-    opacity: 0;
-    /* quiz_box btn_start butonun üstüne geldiği için tıklama olayını engelledik */
-    pointer-events: none;
 
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: all 0.3s ease;
+
+    opacity: 0;
+    pointer-events: none;
 }
 
 .quiz_box header .title {
@@ -31,17 +29,16 @@
 }
 
 .quiz_box .question_text {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
 }
 
 .quiz_box .option_list {
     padding: 18px 0;
-
 }
 
-.quiz_box .option_list .option{
-    border: 1px solid #151d3b;
+.quiz_box .option_list .option {
+    border: 1px solid #151D3B;
     border-radius: 5px;
     padding: 8px 15px;
     font-size: 16px;
@@ -51,24 +48,43 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 
-.option_list .option:hover {
-    color: #fff;
-    background: #ffd33d;
-
+.quiz_box .option_list .option:hover {
+    color: #112B2C;
+    background: #FFD33D;
 }
 
-.option_list .option.correct:hover {
-    color: #fff;
-    background: #00DFA2;
-
+.quiz_box .option_list .option.correct {
+    color: #155724;
+    background: #d4edda;
 }
 
-.option_list .option.incorrect:hover {
-    color: #fff;
-    background: #B31312;
-
+.quiz_box .option_list .option.incorrect {
+    color: #721c24;
+    background: #f8d7da;
 }
 
+.quiz_box .option_list .option.disabled {
+    pointer-events: none;
+}
+
+.quiz_box .next_btn {
+    opacity: 0;
+    pointer-events: none;
+
+    transform: scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.quiz_box .next_btn.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.quiz_box footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

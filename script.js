@@ -1,27 +1,6 @@
-// Her bir soruyu temsil etmesi için Soru nesnesi oluşturduk
-// constructor metodu ekledik
-function Soru(soruMetni, cevapSecenekleri, dogruCevap) {
-    // Her bir soru constructorının örneğinde kullanmak için "this" ile tanımlama yaptık
-    this.soruMetni = soruMetni;
-    this.cevapSecenekleri = cevapSecenekleri;
-    this.dogruCevap = dogruCevap;
-}
 
-Soru.prototype.cevabiKontrolEt = function (cevap) {
-    return cevap === this.dogruCevap;
-}
 
-let sorular = [
-    new Soru("1-JavaScript'i hangi HTML öğesinin içine koyuyoruz?", { a: "scripting", b: "js", c: "script", d: "javascript"}, 'c'),
 
-    new Soru("2-JavaScript hangi tür bir dildir?", { a: "Yüksek seviye diller", b: "Düşük seviye diller", c: "Orta seviye diller", d: "Hem yüksek hem de düşük seviye diller"}, 'c'),
-
-    new Soru("3-JavaScript'te değişkenleri tanımlamak için hangi anahtar kelimeyi kullanırız?",  { a: "var", b: 'const', c: 'Hepsi', d: 'let'}, 'c'),
-
-    new Soru('4-Hangisi js paket yönetim uygulamasıdır? ', { a: 'Node.js', b: 'Typescript', c: 'Npm'}, 'c'),
-
-    new Soru("5-JavaScript'te döngülerle ilgili hangi ifade yanlıştır?", { a: "for döngüsü, belirli bir sayıda tekrarlamak için kullanılır.", b: "while döngüsü, belirli bir koşul sağlandığı sürece tekrarlamak için kullanılır.", c: "do-while döngüsü, en az bir kez döngünün içeriğini çalıştırır.", d: "foreach döngüsü, bir dizi üzerinde gezinmek için kullanılır."}, 'a')
-];
 
 // Quiz adında bir constructor tanımladık
 function Quiz(sorular) {
@@ -39,16 +18,23 @@ const quiz = new Quiz(sorular)
 document.querySelector(".btn_start").addEventListener("click", function() {
     document.querySelector(".quiz_box").classList.add("active");
     soruGoster(quiz.soruGetir());
+    soruSayisi(quiz.soruIndex + 1, quiz.sorular.length);
+    document.querySelector(".next_btn").classList.remove("show")
 })
 
 document.querySelector(".next_btn").addEventListener("click", function() {
     if (quiz.sorular.length != quiz.soruIndex + 1) {
         quiz.soruIndex += 1;
         soruGoster(quiz.soruGetir());
+        soruSayisi(quiz.soruIndex + 1, quiz.sorular.length);
+        document.querySelector(".next_btn").classList.remove("show")
     } else {
         console.log("quiz bitti");
     }
 });
+const option_list = document.querySelector(".option_list")
+const correctIcon = `<div class="icon"><i class="fas fa-check"></i></div>`;
+const incorrectIcon = `<div class="icon"><i class="fas fa-times"></i></div>`
 // Soru gösterme işlemini gerçekleştiren fonksiyon
 function soruGoster(soru) {
     let question = `<span>${soru.soruMetni}</span>`;
@@ -61,8 +47,9 @@ function soruGoster(soru) {
                     <span><b>${cevap}</b>: ${soru.cevapSecenekleri[cevap]}</span>
                 </div>
             `;
+           
     }
-    const option_list = document.querySelector(".option_list")
+  
     document.querySelector(".question_text").innerHTML = question;
     option_list.innerHTML = options;
     
@@ -74,14 +61,30 @@ function soruGoster(soru) {
 }
 
 function optionSelected(option) {
+    //seçilen seçeneğin içeriğini aldık
     let cevap = option.querySelector("span b").textContent;
     let soru = quiz.soruGetir();
 
     if (soru.cevabiKontrolEt(cevap)) {
         option.classList.add("correct")
+        option.insertAdjacentHTML("beforeend", correctIcon)
         
     }
     else{
         option.classList.add("incorrect")
+        option.insertAdjacentHTML("beforeend", incorrectIcon)
     }
+
+    for(let i = 0; i < option_list.children.length; i++){
+        option_list.children[i].classList.add("disabled");
+    }
+ 
+    document.querySelector(".next_btn").classList.add("show")
+}
+
+function soruSayisi(soruSirasi, toplamSoru) {
+    let tag = `<span class="badge bg-warning">${soruSirasi} / ${toplamSoru}</span>`
+    
+    document.querySelector(".quiz_box .question_index").innerHTML = tag
+    console.log(tag)
 }
