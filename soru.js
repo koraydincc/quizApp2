@@ -9,13 +9,8 @@ Soru.prototype.cevabiKontrolEt = function(cevap) {
 }
 
 let sorular = [
-    new Soru("1-JavaScript'i hangi HTML öğesinin içine koyuyoruz?", { a: "scripting", b: "js", c: "script", d: "javascript"}, 'c'),
-
-    new Soru("2-JavaScript hangi tür bir dildir?", { a: "Yüksek seviye diller", b: "Düşük seviye diller", c: "Orta seviye diller", d: "Hem yüksek hem de düşük seviye diller"}, 'c'),
-
-    new Soru("3-JavaScript'te değişkenleri tanımlamak için hangi anahtar kelimeyi kullanırız?",  { a: "var", b: 'const', c: 'Hepsi', d: 'let'}, 'c'),
-
-    new Soru('4-Hangisi js paket yönetim uygulamasıdır? ', { a: 'Node.js', b: 'Typescript', c: 'Npm', d:'Bootstrap'}, 'c'),
-
-    new Soru("5-JavaScript'te döngülerle ilgili hangi ifade yanlıştır?", { a: "for döngüsü, belirli bir sayıda tekrarlamak için kullanılır.", b: "while döngüsü, belirli bir koşul sağlandığı sürece tekrarlamak için kullanılır.", c: "do-while döngüsü, en az bir kez döngünün içeriğini çalıştırır.", d: "foreach döngüsü, bir dizi üzerinde gezinmek için kullanılır."}, 'a')
+    new Soru("1-Hangisi javascript paket yönetim uygulasıdır?", { a: "Node.js", b: "Typescript", c: "Npm" , d: "Nuget" }, "c"),
+    new Soru("2-Hangisi frontend kapsamında değerlendirilmez?", { a: "css", b: "html", c: "javascipt", d: "sql" }, "d"),
+    new Soru("3-Hangisi backend kapsamında değerlendirilir?", { a: "node.js", b: "typescript", c: "angular", d: "react" }, "a"),
+    new Soru("4-Hangisi javascript programlama dilini kullanmaz?", { a: "react", b: "angular", c: "vuejs", d: "asp.net" }, "d")
 ];
